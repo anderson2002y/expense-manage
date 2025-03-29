@@ -1,6 +1,6 @@
 <script setup>
   import imagen from '../assets/img/grafico.jpg'
-import Presupuesto from './Presupuesto.vue';
+  import { formatearCantidad } from '../helpers';
 
   const props = defineProps({
     presupuesto: {
@@ -30,12 +30,12 @@ import Presupuesto from './Presupuesto.vue';
 
       <p>
         <span> Presupuesto: </span>
-        $ {{ presupuesto }}
+        {{ formatearCantidad(presupuesto) }}
       </p>
 
       <p>
         <span> Disponible: </span>
-        $ {{ disponible }}
+        {{ formatearCantidad(disponible) }}
       </p>
 
       <p>
