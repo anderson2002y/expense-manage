@@ -1,0 +1,129 @@
+<script setup>
+  import cerrarModal from '../assets/img/cerrar.svg'
+
+  const emit = defineEmits([
+    'ocultar-modal'
+  ]);
+</script>
+
+<template>
+  <div class="modal">
+    <div class="cerrar-modal">
+      <img 
+        :src="cerrarModal" 
+        alt=""
+        @click="$emit('ocultar-modal')"
+      >
+    </div>
+
+    <div
+      class="contenedor"
+    >
+      <form class="nuevo-gasto">
+        <legend>Añadir Gastos</legend>
+        <div class="campo">
+          <label for="nombre">Nombre del gasto</label>
+          <input 
+            type="text"
+            id="nombre"
+            placeholder="Agrega el Nombre del Gasto"
+          >
+        </div>
+
+        <div class="campo">
+          <label for="cantidad">Cantidad</label>
+          <input 
+            type="text"
+            id="cantidad"
+            placeholder="Agrega la Cantidad del gasto, ej. 300"
+          >
+        </div>
+
+        <div class="campo">
+          <label for="categoria">Categoría</label>
+          <select id="categoria">
+            <option value="">-- Seleccione --</option>
+            <option value="ahorro">Ahorro</option>
+            <option value="comida">Comida</option>
+            <option value="casa">Casa</option>
+            <option value="gastos">Gastos Varios</option>
+            <option value="ocio">Ocio</option>
+            <option value="salud">Salud</option>
+            <option value="suscripciones">Suscripciones</option>
+          </select>
+        </div>
+
+        <input 
+          type="submit"
+          value="Añadir Gastos"
+        >
+      </form>  
+
+    </div> <!-- .cerrar-modal -->
+  </div> <!-- .modal -->
+</template>
+
+<style scoped>
+
+  .modal {
+    position: absolute;
+    background-color: rgb(0 0 0 / 0.9);
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cerrar-modal {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+  }
+
+  .cerrar-modal img {
+    width: 3rem;
+    cursor: pointer;
+  }
+
+  .nuevo-gasto {
+    margin: 10rem auto 0 auto;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .nuevo-gasto legend {
+    text-align: center;
+    color: var(--blanco);
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .campo {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .nuevo-gasto input,
+  .nuevo-gasto select {
+    background-color: var(--gris-claro);
+    border-radius: 1rem;
+    border: none;
+    padding: 1rem;
+    font-size: 2.2rem;
+  }
+
+  .nuevo-gasto label {
+    color: var(--blanco);
+    font-size: 2.2rem;
+  }
+
+  .nuevo-gasto input[type="submit"] {
+    background-color: var(--azul);
+    color: var(--blanco);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+</style>
