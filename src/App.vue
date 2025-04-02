@@ -21,6 +21,8 @@
     fecha: Date.now(),
   });
 
+  const gastos = ref([]);
+
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad;
     disponible.value = cantidad;
@@ -32,7 +34,7 @@
       modal.animar = true;
     }, 300);
     
-    document.body.style.overflow = 'hidden';
+    //document.body.style.overflow = 'hidden';
   }
 
   const ocultarModal = () => {
@@ -41,7 +43,14 @@
       modal.mostrar = false;
     }, 300);
     
-    document.body.style.overflow = '';
+    //document.body.style.overflow = '';
+  }
+
+  const guardarGasto = () => {
+    gastos.value.push({
+      ...gasto,
+      id:123
+    });
   }
 
 </script>
@@ -80,6 +89,7 @@
       <Modal
         v-if="modal.mostrar"
         @ocultar-modal="ocultarModal"
+        @guardar-gasto="guardarGasto"
         :modal="modal"
         v-model:nombre="gasto.nombre"
         v-model:cantidad="gasto.cantidad"

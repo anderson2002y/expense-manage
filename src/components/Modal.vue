@@ -7,6 +7,7 @@
  
   const emit = defineEmits([
     'ocultar-modal',
+    'guardar-gasto',
     'update:nombre',
     'update:cantidad',
     'update:categoria',
@@ -46,12 +47,14 @@
     //Validar que no sean valores a 0
     if(cantidad <= 0) {
       error.value = 'Cantidad no válida';
-      
+
       setTimeout(() => {
         error.value('');
       }, 3000);
       return;
     }
+
+    emit('guardar-gasto');
   }
 
 </script>
