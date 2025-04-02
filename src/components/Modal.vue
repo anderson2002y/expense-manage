@@ -4,6 +4,14 @@
   const emit = defineEmits([
     'ocultar-modal'
   ]);
+
+  const props = defineProps({
+    modal: {
+      type: Object,
+      required: true
+    }
+  });
+
 </script>
 
 <template>
@@ -17,7 +25,8 @@
     </div>
 
     <div
-      class="contenedor"
+      class="contenedor contenedor-formulario"
+      :class="[modal.animar ? 'animar' : 'cerrar']"
     >
       <form class="nuevo-gasto">
         <legend>Añadir Gastos</legend>
@@ -85,6 +94,21 @@
   .cerrar-modal img {
     width: 3rem;
     cursor: pointer;
+  }
+
+  .contenedor-formulario {
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  .contenedor-formulario.animar {
+    opacity: 1;
+  }
+
+  .contenedor-formulario.cerrar {
+    opacity: 0;
   }
 
   .nuevo-gasto {
