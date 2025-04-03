@@ -34,6 +34,15 @@
     deep:true
   });
 
+  watch(modal, () => {
+    if(!modal.mostrar) {
+    //Reiniciar el objeto
+    reiniciarStateGasto();
+    }
+  }, {
+    deep:true
+  });
+
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad;
     disponible.value = cantidad;
@@ -46,6 +55,16 @@
     }, 300);
     
     //document.body.style.overflow = 'hidden';
+  }
+
+  const reiniciarStateGasto = () => {
+    Object.assign(gasto, {
+      nombre: '',
+      cantidad: '',
+      categoria: '',
+      id: null,
+      fecha: Date.now(),
+    });
   }
 
   const ocultarModal = () => {
@@ -64,15 +83,14 @@
     });
 
     ocultarModal();
-
     //Reiniciar el objeto
-    Object.assign(gasto, {
-      nombre: '',
-      cantidad: '',
-      categoria: '',
-      id: null,
-      fecha: Date.now(),
-    });
+    reiniciarStateGasto();
+  }
+
+  const seleccionarGasto = id => {
+    const gastoEditar = gastos.value.filter(gasto => gasto.id === id)[0];
+    Object.assign(gasto, gastoEditar);
+    mostrarModal();
   }
 
 </script>
@@ -109,6 +127,7 @@
           v-for="gasto in gastos"
           :key="gasto.id"
           :gasto="gasto"
+          @seleccionar-gasto="seleccionarGasto"
         />
       </div>
 
