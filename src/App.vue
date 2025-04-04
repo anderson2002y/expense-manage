@@ -136,6 +136,13 @@
     return gastos.value;
   });
 
+  const resetApp = () => {
+    if(confirm('¿Deseas reiniciar presupuesto y gastos?')) {
+      gastos.value = [];
+      presupuesto.value = 0;
+    }
+  }
+
 </script>
 
 <template>
@@ -153,6 +160,7 @@
         
         <ControlPresupuesto
           v-else
+          @reset-app="resetApp"
           :presupuesto="presupuesto"
           :disponible="disponible"
           :gastado="gastado"
@@ -161,11 +169,11 @@
       </div>
     </header>
 
-    <Filtro
-      v-model:filtro ="filtro"
-    />
-
     <main v-if="presupuesto > 0">
+
+      <Filtro
+        v-model:filtro ="filtro"
+      />
 
       <div class="listado-gastos contenedor">
         <h2> {{ gastosFiltrados.length > 0 ? 'Gastos' : 'No Hay Gastos'}}</h2>
