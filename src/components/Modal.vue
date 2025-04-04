@@ -257,10 +257,11 @@
     width: 100%;
     background-color: #ef4444;
     font-weight: 700;
-    font-size: 1.2rem;
-    margin-top: 10rem;
+    font-size: 2.2rem;
+    margin-top: 9rem;
     border: none;
     color: var(--blanco);
     cursor: pointer;
+    border-radius: 1rem;
   }
 </style>
