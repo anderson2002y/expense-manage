@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import Alerta from './Alerta.vue';
   import cerrarModal from '../assets/img/cerrar.svg';
 
@@ -89,6 +89,10 @@
     emit('guardar-gasto');
   }
 
+  const isEditing = computed(() => {
+    return props.id;
+  });
+
 </script>
 
 <template>
@@ -108,7 +112,7 @@
       <form class="nuevo-gasto"
         @submit.prevent="agregarGasto()"
       >
-        <legend>Añadir Gastos</legend>
+        <legend> {{ isEditing ? 'Guardar Cambios' :  'Añadir Gasto' }} </legend>
 
         <Alerta
           v-if="error"
@@ -153,9 +157,16 @@
 
         <input 
           type="submit"
-          value="Añadir Gastos"
+          :value="[ isEditing ? 'Guardar Cambios' : 'Añadir Gastos']"
         >
-      </form>  
+      </form>
+
+      <button
+        type="button"
+        class="btn-eliminar"
+        v-if="isEditing"
+      > Eliminar Gasto
+      </button>
 
     </div> <!-- .cerrar-modal -->
   </div> <!-- .modal -->
@@ -239,4 +250,15 @@
     cursor: pointer;
   }
 
+  .btn-eliminar {
+    padding: 1rem;
+    width: 100%;
+    background-color: #ef4444;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 10rem;
+    border: none;
+    color: var(--blanco);
+    cursor: pointer;
+  }
 </style>
